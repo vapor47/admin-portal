@@ -18,11 +18,9 @@
                   </ul>
                   <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="login">
-                      <form class="form-horizontal" action='' method="POST">
+                      <div class="form-horizontal">
                         <fieldset>
-                          <div id="legend">
-                            <legend class="">Login</legend>
-                          </div>    
+                            <legend class="">Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </legend>
                           <div class="control-group">
                             <!-- Username -->
                             <label class="control-label"  for="username">Username</label>
@@ -47,31 +45,31 @@
                             </div>
                           </div>
                         </fieldset>
-                      </form>                
+                      </div>                
                     </div>
                     <div class="tab-pane fade" id="create">
-                      <form id="tab">
+                      <div id="tab">
                         <label>Username</label>
-                        <asp:TextBox ID ="createUsernameText" runat="server"></asp:TextBox>
+                        <asp:TextBox ID ="txtCreateUsername" runat="server"></asp:TextBox>
                         <label>Password</label>
-                        <asp:TextBox ID="createPasswordText"  TextMode="Password" runat="server" type ="password"></asp:TextBox>
+                        <asp:TextBox ID="txtCreatePassword"  TextMode="Password" runat="server" type ="password"></asp:TextBox>
                         <label>First Name</label>
-                        <asp:TextBox ID ="createFNameText" runat="server"></asp:TextBox>
+                        <asp:TextBox ID ="txtCreateFName" runat="server"></asp:TextBox>
                         <label>Last Name</label>
-                        <asp:TextBox ID ="createLNameText" runat="server"></asp:TextBox>
+                        <asp:TextBox ID ="txtCreateLName" runat="server"></asp:TextBox>
                         <label>Email</label>
-                        <asp:TextBox ID ="createEmailText" runat="server"></asp:TextBox>
+                        <asp:TextBox ID ="txtCreateEmail" runat="server"></asp:TextBox>
                         <label>User Type</label>
-                        <asp:DropDownList ID="UserType" runat="server">
+                        <asp:DropDownList ID="ddlUserType" runat="server">
                             <asp:ListItem Enabled="true" Text="Admin" Value="0"></asp:ListItem>
                             <asp:ListItem Enabled="true" Text="User1" Value="1"></asp:ListItem>
                             <asp:ListItem Enabled="true" Text="User2" Value="2"></asp:ListItem>
                         </asp:DropDownList>
      
                         <div>
-                          <button class="btn btn-primary">Create Account</button>
+                          <asp:Button ID="btnCreateAcc" Text="Create Account" runat="server" OnClick="btnCreateAcc_Click" CssClass="btn-primary" />
                         </div>
-                      </form>
+                      </div>
                     </div>
                 </div>
               </div>
@@ -79,4 +77,6 @@
         </div>
 	</div>
 </div>
+    <asp:Label ID="lblNotify" runat="server" Font-Size="Large" Text="Account Creation Successful" Visible="False"></asp:Label>
+    </div>
 </asp:Content>

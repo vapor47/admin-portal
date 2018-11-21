@@ -31,57 +31,75 @@ namespace admin_portal {
         protected global::System.Web.UI.WebControls.TextBox loginPasswordText;
         
         /// <summary>
-        /// createUsernameText control.
+        /// txtCreateUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox createUsernameText;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateUsername;
         
         /// <summary>
-        /// createPasswordText control.
+        /// txtCreatePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox createPasswordText;
+        protected global::System.Web.UI.WebControls.TextBox txtCreatePassword;
         
         /// <summary>
-        /// createFNameText control.
+        /// txtCreateFName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox createFNameText;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateFName;
         
         /// <summary>
-        /// createLNameText control.
+        /// txtCreateLName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox createLNameText;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateLName;
         
         /// <summary>
-        /// createEmailText control.
+        /// txtCreateEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox createEmailText;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateEmail;
         
         /// <summary>
-        /// UserType control.
+        /// ddlUserType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UserType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserType;
+        
+        /// <summary>
+        /// btnCreateAcc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateAcc;
+        
+        /// <summary>
+        /// lblNotify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNotify;
     }
 }
