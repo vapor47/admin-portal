@@ -62,6 +62,56 @@ namespace admin_portal
             }
         
         }
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (txtloginUser.Text == "" || txtLoginPassword.Text == "")
+            {
+                lblNotify.Text = "Invalid Username or Password, try again";
+                lblNotify.ForeColor = System.Drawing.Color.Red;
+                lblNotify.Visible = true;
+
+            }
+            else
+            {
+                try
+                {
+                    using (con)
+                    {
+                        using (SqlCommand cmd = con.CreateCommand())
+                        {
+                            string loginQuery = "SELECT U.UserType FROM USER_INFO U WHERE U.Username = @Username AND U.Password = Password";
+                            cmd.CommandText = loginQuery;
+                            cmd.Parameters.AddWithValue("@Username", txtloginUser.Text);
+                            cmd.Parameters.AddWithValue("@Password", txtLoginPassword.Text);
+                            con.Open();
+
+                            int type = Convert.ToInt32(cmd.ExecuteScalar());
+                            System.Diagnostics.Debug.WriteLine("usertype: " + type + "\n\n");
+                            con.Close();
+                            if (type == 0)
+                            {
+                                //Response.Redirect("SamplePage.aspx?Scr=" + Variable1);
+                            }
+                            else if (type == 1)
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    lblNotify.ForeColor = System.Drawing.Color.Red;
+                    lblNotify.Text = "Account not found, try again";
+                    lblNotify.Visible = true;
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
+            }
+        }
     }
 
 }

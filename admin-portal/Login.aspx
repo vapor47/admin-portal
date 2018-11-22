@@ -25,7 +25,7 @@
                             <!-- Username -->
                             <label class="control-label"  for="username">Username</label>
                             <div class="controls">
-                              <asp:TextBox ID ="loginUsernameText" runat="server"></asp:TextBox>
+                              <asp:TextBox ID ="txtloginUser" runat="server"></asp:TextBox>
                             </div>
                           </div>
      
@@ -33,7 +33,7 @@
                             <!-- Password-->
                             <label class="control-label" for="password">Password</label>
                             <div class="controls">
-                              <asp:TextBox ID ="loginPasswordText" runat="server"></asp:TextBox>
+                              <asp:TextBox ID ="txtLoginPassword" runat="server" TextMode="Password"></asp:TextBox>
                             </div>
                           </div>
      
@@ -41,7 +41,7 @@
                           <div class="control-group">
                             <!-- Button -->
                             <div class="controls">
-                              <button class="btn btn-success">Login</button>
+                              <asp:Button ID="btnLogin" Text="Login" runat="server" OnClick="btnLogin_Click" CssClass="btn-success" />
                             </div>
                           </div>
                         </fieldset>

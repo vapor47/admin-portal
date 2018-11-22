@@ -13,22 +13,31 @@ namespace admin_portal {
     public partial class About {
         
         /// <summary>
-        /// loginUsernameText control.
+        /// txtloginUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox loginUsernameText;
+        protected global::System.Web.UI.WebControls.TextBox txtloginUser;
         
         /// <summary>
-        /// loginPasswordText control.
+        /// txtLoginPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox loginPasswordText;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginPassword;
+        
+        /// <summary>
+        /// btnLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
         /// txtCreateUsername control.
