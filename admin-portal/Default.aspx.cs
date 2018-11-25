@@ -11,11 +11,7 @@ namespace admin_portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
-/*
- * connect to database
- * load links from rows in database
- */ 

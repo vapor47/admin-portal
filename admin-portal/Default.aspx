@@ -1,67 +1,54 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="admin_portal._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!--
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-    -->
-    <!-- Link -->
-    <div class="row">
-        <b>Link Title</b>
-        <p>Link URL
-        </p>
-    </div>
+    <style>
+        .linkbtn
+        {
+        }
+        .link
+        {
+            border: 1.5px solid black;
+            border-radius: 4px;
+            padding-left: 2em;
+        }
+        .link-title
+        {
+            font
+        }
+        .link-url
+        {
+
+        }
+    </style>
         
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [Links]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT [url], [title] FROM [Links] WHERE ([required_role] &lt;= @required_role2)">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="1" Name="required_role2" Type="Byte" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
-    <asp:Repeater runat="server" DataSourceID="SqlDataSource1">
-        <ItemTemplate>
-          
-            <asp:LinkButton
-                Text=<%# Eval("title") %>  
-                PostBackUrl=<%# Eval("url") %>  
-                runat="server"/>
-        </ItemTemplate>
+    <div class="jumbotron">
+        <asp:Repeater runat="server" DataSourceID="SqlDataSource1">
+            <ItemTemplate>
+                <a class="linkbtn" href=<%# Eval("url") %>>
+                    <div class="link">
+                        <h3 class="link-title"><%# Eval("title") %></h3>
+                        <h5 class="link-url"><%# Eval("url") %></h5>
+                    </div>
+                </a>
+            </ItemTemplate>
 
-        <SeparatorTemplate>
-            <br>
-        </SeparatorTemplate>
-    </asp:Repeater>
-    
-    <!--
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
+            <SeparatorTemplate>
+                <br />
+            </SeparatorTemplate>
+        </asp:Repeater>
     </div>
+
+    <!--
+    <a href="http://example.com">
+      <div>
+         anything
+      </div>
+    </a>
     -->
-    <asp:DynamicDataManager ID="DynamicDataManager1" runat="server"></asp:DynamicDataManager>
 </asp:Content>
