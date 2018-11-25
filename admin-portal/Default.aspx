@@ -11,8 +11,26 @@
     <!-- Link -->
     <div class="row">
         <b>Link Title</b>
-        <p>Link URL</p>
+        <p>Link URL
+        </p>
     </div>
+        
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [Links]"></asp:SqlDataSource>
+
+    <asp:Repeater runat="server" DataSourceID="SqlDataSource1">
+        <ItemTemplate>
+          
+            <asp:LinkButton
+                Text=<%# Eval("title") %>  
+                PostBackUrl=<%# Eval("url") %>  
+                runat="server"/>
+        </ItemTemplate>
+
+        <SeparatorTemplate>
+            <br>
+        </SeparatorTemplate>
+    </asp:Repeater>
+    
     <!--
     <div class="row">
         <div class="col-md-4">
@@ -45,4 +63,5 @@
         </div>
     </div>
     -->
+    <asp:DynamicDataManager ID="DynamicDataManager1" runat="server"></asp:DynamicDataManager>
 </asp:Content>
