@@ -10,10 +10,10 @@
             border: 1.5px solid black;
             border-radius: 4px;
             padding-left: 2em;
+            padding-bottom: 1em;
         }
         .link-title
         {
-            font
         }
         .link-url
         {
