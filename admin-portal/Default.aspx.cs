@@ -15,3 +15,7 @@ namespace admin_portal
         }
     }
 }
+/*
+ * connect to database
+ * load links from rows in database
+ */ 
