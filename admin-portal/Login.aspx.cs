@@ -11,8 +11,7 @@ namespace admin_portal
 {
     public partial class About : Page
     {
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Luis F\Source\Repos\admin-portal\admin-portal\App_Data\Database1.mdf;Integrated Security = True");
-        //string ConStr = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Luis F\Source\Repos\admin-portal\admin-portal\App_Data\Database1.mdf;Integrated Security=True"
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -60,9 +59,6 @@ namespace admin_portal
                                     lblNotify.Text = "Account Creation Successful";
                                     lblNotify.ForeColor = System.Drawing.Color.Green;
                                     lblNotify.Visible = true;
-                                    // SqlCommand cmd = new SqlCommand("INSERT INTO USER_INFO VALUES ('" + txtCreateUsername.Text + "','" + txtCreateFName.Text + "','" + txtCreateLName.Text + "','" + txtCreateEmail.Text + "','" + ddlUserType.SelectedIndex);
-
-                                    System.Diagnostics.Debug.WriteLine("Hello World");
                                 
                             }
 
@@ -74,6 +70,9 @@ namespace admin_portal
                 }
                 catch (SqlException ex)
                 {
+                    lblNotify.Text = "There was an error with the database";
+                    lblNotify.ForeColor = System.Drawing.Color.Red;
+                    lblNotify.Visible = true;
                     System.Diagnostics.Debug.WriteLine(ex.ToString());
                 }
             }
