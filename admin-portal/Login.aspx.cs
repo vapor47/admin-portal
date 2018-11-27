@@ -16,7 +16,8 @@ namespace admin_portal
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            lblNotify.Visible = false;
         }
        /* protected void btnCreateAcc_Click(object sender, EventArgs e)
         {
@@ -123,11 +124,19 @@ namespace admin_portal
                                 System.Diagnostics.Debug.WriteLine(Session["username"]);
                                 System.Diagnostics.Debug.WriteLine(Session["UserType"]);
 
-                                if (usertype == 0)
+                                if (usertype == 3)
+                                {
                                     Response.Redirect("Admin.aspx");
+                                }
                                 else
                                     Response.Redirect("Default.aspx");
 
+                            }
+                            else
+                            {
+                                lblNotify.Text = "Invalid credentials, try again.";
+                                lblNotify.ForeColor = System.Drawing.Color.Red;
+                                lblNotify.Visible = true;
                             }
                         }
                     }

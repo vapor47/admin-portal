@@ -11,6 +11,11 @@ namespace admin_portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Convert.ToString(Session["Username"])!="" && Convert.ToInt32(Session["Usertype"]) == 3)
+                aAdminActions.Visible = true;
+            else
+                aAdminActions.Visible = false;
 
         }
     }
