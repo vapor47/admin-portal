@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddLink.aspx" />
+    <Content Include="Admin.aspx" />
     <Content Include="App_Data\TestDatabase.mdf" />
     <Content Include="App_Data\TestDatabase_log.ldf">
       <DependentUpon>TestDatabase.mdf</DependentUpon>
@@ -129,7 +130,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="serverAdmin.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -172,6 +172,13 @@
     </Compile>
     <Compile Include="AddLink.aspx.designer.cs">
       <DependentUpon>AddLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Login.aspx.cs">
@@ -220,13 +227,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="serverAdmin.aspx.cs">
-      <DependentUpon>serverAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="serverAdmin.aspx.designer.cs">
-      <DependentUpon>serverAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
