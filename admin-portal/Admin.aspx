@@ -26,13 +26,15 @@
             width: 75%;
         }
     </style>
-
+    <div style="padding-top: 2em;">
     <asp:Menu ID="adminMenu" runat="server" OnMenuItemClick="adminMenu_MenuItemClick" Orientation="Horizontal">
         <Items>
             <asp:MenuItem Selected="True" Text="Users" Value="0"></asp:MenuItem>
             <asp:MenuItem Text="Links" Value="1"></asp:MenuItem>
         </Items>
+        <StaticMenuItemStyle BackColor="Gainsboro" BorderStyle="Solid" BorderWidth="1px" CssClass="menuItem" Font-Bold="False" Font-Names="Calibri" Font-Size="20px" HorizontalPadding="25px" VerticalPadding="5px" />
     </asp:Menu>
+         </div>
     <asp:MultiView ID="adminMultiView" runat="server" ActiveViewIndex="1">
         <asp:View ID="usersView" runat="server">
             <asp:SqlDataSource ID="UsersDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [USER_INFO]"
@@ -134,7 +136,7 @@
                 </UpdateParameters> 
             </asp:SqlDataSource>
 
-            <h4 style="font-size: 30px; font-weight: bold">Add Links</h4>
+            <h4 style="font-size: 30px; font-weight: bold">Add Link</h4>
             <asp:FormView runat="server" ID="fv" DataSourceID="LinksDataSource" DefaultMode="Insert" 
                 oniteminserted="fv_ItemInserted">
                 <ItemTemplate>
@@ -159,10 +161,12 @@
                     </div>
                 </InsertItemTemplate>
             </asp:FormView>
+
             <hr />
 
             <h4 style="font-size: 30px; font-weight: bold">Edit/Remove Links</h4>
-            <asp:GridView ID="LinksGridView" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="url" DataSourceID="LinksDataSource" BorderStyle="Solid" Font-Names="Arial" HorizontalAlign="Left">
+            <asp:GridView ID="LinksGridView" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" 
+                DataKeyNames="url" DataSourceID="LinksDataSource" Font-Names="Arial" HorizontalAlign="Left" CellPadding="10" ForeColor="#333333" GridLines="None" Font-Size="Medium" Width="80%">
                 <Columns>
                     <asp:CommandField ShowEditButton="True" />
                     <asp:BoundField DataField="url" HeaderText="URL" ReadOnly="True" SortExpression="url" >
