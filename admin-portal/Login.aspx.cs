@@ -16,7 +16,8 @@ namespace admin_portal
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            lblNotify.Visible = false;
         }
        /* protected void btnCreateAcc_Click(object sender, EventArgs e)
         {
