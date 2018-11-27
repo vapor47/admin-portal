@@ -23,5 +23,9 @@ namespace admin_portal
         {
             this.fv.DataBind();
         }
+        protected void ufv_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        {
+            this.fv.DataBind();
+        }
     }
 }

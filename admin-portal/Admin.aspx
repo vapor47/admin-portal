@@ -35,7 +35,93 @@
     </asp:Menu>
     <asp:MultiView ID="adminMultiView" runat="server" ActiveViewIndex="1">
         <asp:View ID="usersView" runat="server">
-            Users</asp:View>
+            <asp:SqlDataSource ID="UsersDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [USER_INFO]"
+                UpdateCommand="UPDATE USER_INFO SET FirstName = @fname, LastName = @lname, Email = @email, UserType = @type WHERE Username = @user"
+                DeleteCommand="DELETE FROM USER_INFO U WHERE U.Username =  @user AND U.Password = @pw"
+                InsertCommand="INSERT INTO USER_INFO (Username, Password, UserType, FirstName, LastName) VALUES (@user, @pw, @type, @fname, @lname, @email)">
+                <DeleteParameters>
+                    <asp:Parameter Name="user" />
+                    <asp:Parameter Name="pw" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="user" />
+                    <asp:Parameter Name="pw" />
+                    <asp:Parameter Name="type" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="fname" />
+                    <asp:Parameter Name="lname" />
+                    <asp:Parameter Name="email" />
+                    <asp:Parameter Name="type" />
+                    <asp:Parameter Name="user" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+
+            <h4 style="font-size: 30px; font-weight: bold">Add New Users</h4>
+            <asp:FormView runat="server" ID="FormView1" DataSourceID="UsersDataSource" DefaultMode="Insert" 
+                oniteminserted="fv_ItemInserted">
+                <ItemTemplate>
+                    <b>URL:</b> <asp:Label Text='<%# Eval("url") %>' runat="server" />
+                    <asp:Button Text="New" runat="server" CommandName="New" />
+                </ItemTemplate>
+                <InsertItemTemplate>
+                    <table>
+                        <tr>
+                            <td>Users</td>
+                        </tr>
+                    </table>
+                    <div class="addFormBorder">
+                        <div class="addForm">
+                            <b>Username:</b> <asp:TextBox ID="txtUsername" runat="server" Text='<%# Bind("user") %>' />
+                        </div>
+                        <div class="addForm">
+                            <b>Password:</b> <asp:TextBox ID="txtPassword" runat="server" Text='<%# Bind("pw") %>' />
+                        </div>
+                        <div class="addForm">
+                            <b>User Role:</b> <asp:TextBox ID="txtUserType" runat="server" Text='<%# Bind("type") %>' />
+                        </div>
+                        <div class="addForm">
+                            <b>First Name:</b>
+                            <asp:TextBox ID="txtFName" runat="server" Text='<%# Bind("fname") %>' />
+                        </div>
+                        <div class="addForm">
+                            <b>Last Name:</b>
+                            <asp:TextBox ID="txtLName" runat="server" Text='<%# Bind("lname") %>' />
+                        </div>
+                        <div class="addForm">
+                            <b>Email:</b>
+                            <asp:TextBox ID="txtEmail" runat="server" Text='<%# Bind("email") %>' />
+                        </div>
+                        <br />
+                        <asp:Button Text="Insert" runat="server" CommandName="Insert" />
+                    </div>
+                </InsertItemTemplate>
+            </asp:FormView>
+
+
+            <h4 style="font-size: 30px; font-weight: bold">Edit User Info/Remove Users</h4>
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="url" DataSourceID="LinksDataSource" BorderStyle="Solid" Font-Names="Arial" HorizontalAlign="Left">
+                <Columns>
+                    <asp:CommandField ShowEditButton="True" />
+                    <asp:BoundField DataField="url" HeaderText="URL" ReadOnly="True" SortExpression="url" >
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Left" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" >
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Left" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="required_role" HeaderText="Required Role" SortExpression="required_role" />
+                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="Remove" >
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:CommandField>
+                </Columns>
+                <EditRowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+            </asp:GridView>
+           </asp:View>
         <asp:View ID="linksView" runat="server">
             <asp:SqlDataSource ID="LinksDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [Links]"
                 UpdateCommand="UPDATE Links SET title = @title, required_role = @required_role WHERE url = @url"
