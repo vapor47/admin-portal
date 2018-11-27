@@ -126,7 +126,7 @@ namespace admin_portal
 
                                 if (usertype == 3)
                                 {
-                                    Response.Redirect("Site.Master");
+                                    Response.Redirect("Admin.aspx");
                                 }
                                 else
                                     Response.Redirect("Default.aspx");
