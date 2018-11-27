@@ -123,11 +123,19 @@ namespace admin_portal
                                 System.Diagnostics.Debug.WriteLine(Session["username"]);
                                 System.Diagnostics.Debug.WriteLine(Session["UserType"]);
 
-                                if (usertype == 0)
-                                    Response.Redirect("Admin.aspx");
+                                if (usertype == 3)
+                                {
+                                    Response.Redirect("Site.Master");
+                                }
                                 else
                                     Response.Redirect("Default.aspx");
 
+                            }
+                            else
+                            {
+                                lblNotify.Text = "Invalid credentials, try again.";
+                                lblNotify.ForeColor = System.Drawing.Color.Red;
+                                lblNotify.Visible = true;
                             }
                         }
                     }

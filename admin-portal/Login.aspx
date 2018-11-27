@@ -16,7 +16,7 @@
                     <div class="tab-pane active in" id="login">
                       <div class="form-horizontal">
                         <fieldset>
-                            <legend class="">Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </legend>
+                            <!--<legend class="">Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </legend> -->
                           <div class="control-group">
                             <!-- Username -->
                             <label class="control-label"  for="username">Username</label>
