@@ -26,16 +26,19 @@
             width: 75%;
         }
     </style>
-
-    <asp:Menu ID="adminMenu" runat="server" OnMenuItemClick="adminMenu_MenuItemClick" Orientation="Horizontal">
-        <Items>
-            <asp:MenuItem Selected="True" Text="Users" Value="0"></asp:MenuItem>
-            <asp:MenuItem Text="Links" Value="1"></asp:MenuItem>
-        </Items>
-    </asp:Menu>
+    <div style="padding-top: 2em;">
+        <asp:Menu ID="adminMenu" runat="server" OnMenuItemClick="adminMenu_MenuItemClick" Orientation="Horizontal" BorderStyle="Solid">
+            <Items>
+                <asp:MenuItem Selected="True" Text="Users" Value="0"></asp:MenuItem>
+                <asp:MenuItem Text="Links" Value="1"></asp:MenuItem>
+            </Items>
+            <StaticMenuItemStyle BackColor="Gainsboro" BorderStyle="Solid" BorderWidth="1px" CssClass="menuItem" Font-Bold="False" Font-Names="Calibri" Font-Size="20px" HorizontalPadding="25px" VerticalPadding="5px" />
+        </asp:Menu>
+    </div>
     <asp:MultiView ID="adminMultiView" runat="server" ActiveViewIndex="1">
         <asp:View ID="usersView" runat="server">
-            Users</asp:View>
+        
+        </asp:View>
         <asp:View ID="linksView" runat="server">
             <asp:SqlDataSource ID="LinksDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [Links]"
                 UpdateCommand="UPDATE Links SET title = @title, required_role = @required_role WHERE url = @url"
@@ -48,7 +51,7 @@
                 </UpdateParameters> 
             </asp:SqlDataSource>
 
-            <h4 style="font-size: 30px; font-weight: bold">Add Links</h4>
+            <h4 style="font-size: 30px; font-weight: bold">Add Link</h4>
             <asp:FormView runat="server" ID="fv" DataSourceID="LinksDataSource" DefaultMode="Insert" 
                 oniteminserted="fv_ItemInserted">
                 <ItemTemplate>
@@ -56,9 +59,6 @@
                     <asp:Button Text="New" runat="server" CommandName="New" />
                 </ItemTemplate>
                 <InsertItemTemplate>
-                    <table>
-                        <td>URL</td>
-                    </table>
                     <div class="addFormBorder">
                         <div class="addForm">
                             <b>URL:</b> <asp:TextBox ID="addUrl" runat="server" Text='<%# Bind("url") %>' />
@@ -73,29 +73,40 @@
                     </div>
                 </InsertItemTemplate>
             </asp:FormView>
+
             <hr />
 
             <h4 style="font-size: 30px; font-weight: bold">Edit/Remove Links</h4>
-            <asp:GridView ID="LinksGridView" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="url" DataSourceID="LinksDataSource" BorderStyle="Solid" Font-Names="Arial" HorizontalAlign="Left">
+            <asp:GridView ID="LinksGridView" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                DataKeyNames="url" DataSourceID="LinksDataSource" Font-Names="Arial" HorizontalAlign="Left" CellPadding="10" ForeColor="#333333" GridLines="None" Font-Size="Medium" Width="80%">
                 <Columns>
-                    <asp:CommandField ShowEditButton="True" />
+                    <asp:CommandField ShowEditButton="True" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:CommandField>
                     <asp:BoundField DataField="url" HeaderText="URL" ReadOnly="True" SortExpression="url" >
                     <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" >
+                    <asp:BoundField DataField="title" HeaderStyle-HorizontalAlign="Center" HeaderText="Title" SortExpression="title" >
                     <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="required_role" HeaderText="Required Role" SortExpression="required_role" />
-                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="Remove" >
-                    <HeaderStyle HorizontalAlign="Center" />
+                    <asp:BoundField DataField="required_role" HeaderText="Required Role" SortExpression="required_role" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" >
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:CommandField>
                 </Columns>
-                <EditRowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle HorizontalAlign="Center" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle HorizontalAlign="Left" BackColor="#EFF3FB" Font-Size="Medium" Width="300px" Wrap="False" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView>
         </asp:View>
     </asp:MultiView>
