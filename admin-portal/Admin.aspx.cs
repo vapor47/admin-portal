@@ -11,7 +11,18 @@ namespace admin_portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Int16.Parse(Session["Usertype"].ToString()) != 3)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            } catch(NullReferenceException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Response.Redirect("Login.aspx");
+            }
+        
         }
 
         protected void adminMenu_MenuItemClick(object sender, MenuEventArgs e)

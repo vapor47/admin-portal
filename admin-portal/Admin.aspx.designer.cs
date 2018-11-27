@@ -58,13 +58,13 @@ namespace admin_portal {
         protected global::System.Web.UI.WebControls.FormView FormView1;
         
         /// <summary>
-        /// GridView1 control.
+        /// UsersGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView UsersGridView;
         
         /// <summary>
         /// linksView control.

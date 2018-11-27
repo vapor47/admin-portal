@@ -11,23 +11,13 @@
         }
     </style>
         
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT [url], [title] FROM [Links] WHERE ([required_role] &lt;= @required_role2)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [Links] WHERE (([required_role] = @required_role2) OR ([required_role] = @required_role))">
         <SelectParameters>
-            <asp:Parameter DefaultValue="1" Name="required_role2" Type="Byte" />
+            <asp:SessionParameter DefaultValue="0" Name="required_role2" SessionField="Usertype" Type="Byte" />
+            <asp:Parameter DefaultValue="0" Name="required_role" Type="Byte" />
         </SelectParameters>
     </asp:SqlDataSource>
 
-    <!--
-        Search bar
-        Role specific links
-            links
-        Global links
-            links
-
-        2 different repeaters
-        maybe separate jumbotrons
-
-        -->
     <div class="jumbotron">
         <asp:Repeater runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate>

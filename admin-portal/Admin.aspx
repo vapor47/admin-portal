@@ -38,12 +38,11 @@
     <asp:MultiView ID="adminMultiView" runat="server" ActiveViewIndex="1">
         <asp:View ID="usersView" runat="server">
             <asp:SqlDataSource ID="UsersDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:localConnectionString %>" SelectCommand="SELECT * FROM [USER_INFO]"
-                UpdateCommand="UPDATE USER_INFO SET FirstName = @fname, LastName = @lname, Email = @email, UserType = @type WHERE Username = @user"
-                DeleteCommand="DELETE FROM USER_INFO U WHERE U.Username =  @user AND U.Password = @pw"
-                InsertCommand="INSERT INTO USER_INFO (Username, Password, UserType, FirstName, LastName) VALUES (@user, @pw, @type, @fname, @lname, @email)">
+                UpdateCommand="UPDATE USER_INFO SET Username = @username, Password = @password, FirstName = @firstname, LastName = @lastname, Email = @email, UserType = @usertype WHERE Id = @id"
+                DeleteCommand="DELETE FROM USER_INFO WHERE Id =  @id"
+                InsertCommand="INSERT INTO USER_INFO (Username, Password, UserType, FirstName, LastName, Email) VALUES (@user, @pw, @type, @fname, @lname, @email)">
                 <DeleteParameters>
-                    <asp:Parameter Name="user" />
-                    <asp:Parameter Name="pw" />
+                    <asp:Parameter Name="id" />
                 </DeleteParameters>
                 <InsertParameters>
                     <asp:Parameter Name="user" />
@@ -63,15 +62,10 @@
             <asp:FormView runat="server" ID="FormView1" DataSourceID="UsersDataSource" DefaultMode="Insert" 
                 oniteminserted="fv_ItemInserted">
                 <ItemTemplate>
-                    <b>URL:</b> <asp:Label Text='<%# Eval("url") %>' runat="server" />
+                    <b>ID:</b> <asp:Label Text='<%# Eval("Id") %>' runat="server" />
                     <asp:Button Text="New" runat="server" CommandName="New" />
                 </ItemTemplate>
                 <InsertItemTemplate>
-                    <table>
-                        <tr>
-                            <td>Users</td>
-                        </tr>
-                    </table>
                     <div class="addFormBorder">
                         <div class="addForm">
                             <b>Username:</b> <asp:TextBox ID="txtUsername" runat="server" Text='<%# Bind("user") %>' />
@@ -102,26 +96,52 @@
 
 
             <h4 style="font-size: 30px; font-weight: bold">Edit User Info/Remove Users</h4>
-            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="url" DataSourceID="LinksDataSource" BorderStyle="Solid" Font-Names="Arial" HorizontalAlign="Left">
+            <asp:GridView ID="UsersGridView" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                DataKeyNames="Id" DataSourceID="UsersDataSource" Font-Names="Arial" HorizontalAlign="Left" CellPadding="10" ForeColor="#333333" GridLines="None" Font-Size="Medium" Width="80%">
                 <Columns>
-                    <asp:CommandField ShowEditButton="True" />
-                    <asp:BoundField DataField="url" HeaderText="URL" ReadOnly="True" SortExpression="url" >
+                    <asp:CommandField ShowEditButton="True" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:CommandField>
+                    <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id" >
                     <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" >
+                    <asp:BoundField DataField="Username" HeaderStyle-HorizontalAlign="Center" HeaderText="Username" SortExpression="Username" >
                     <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="required_role" HeaderText="Required Role" SortExpression="required_role" />
-                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="Remove" >
-                    <HeaderStyle HorizontalAlign="Center" />
+                    <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Usertype" HeaderText="Role" SortExpression="Usertype" >
+                    <HeaderStyle HorizontalAlign="Center" Wrap="False" />
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" >
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:CommandField>
                 </Columns>
-                <EditRowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle HorizontalAlign="Center" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle HorizontalAlign="Left" BackColor="#EFF3FB" Font-Size="Medium" Width="10%" Wrap="False" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView>
            </asp:View>
         <asp:View ID="linksView" runat="server">
