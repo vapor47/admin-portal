@@ -18,5 +18,10 @@ namespace admin_portal
                 aAdminActions.Visible = false;
 
         }
+
+        protected void Abandon_Session()
+        {
+            Session.Abandon();
+        }
     }
 }

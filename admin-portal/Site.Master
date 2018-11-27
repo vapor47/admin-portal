@@ -51,7 +51,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Login" onclick="<% Session.Abandon %>">Logout</a></li>
+                        <li><a runat="server" href="~/Logout">Logout</a></li>
                         <li><a id ="aAdminActions" runat="server" href="~/Admin.aspx" visible="False">Admin Actions</a></li>
                     </ul>
                 </div>
