@@ -11,12 +11,14 @@ namespace admin_portal
 {
     public partial class About : Page
     {
+        int count = 0, usertype = 0;
+        string username = "";
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
             
         }
-        protected void btnCreateAcc_Click(object sender, EventArgs e)
+       /* protected void btnCreateAcc_Click(object sender, EventArgs e)
         {
             if (txtCreateUsername.Text == "" || txtCreatePassword.Text == "")
             {
@@ -77,7 +79,7 @@ namespace admin_portal
                 }
             }
         
-        }
+        }*/
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtloginUser.Text == "" || txtLoginPassword.Text == "")
@@ -95,27 +97,37 @@ namespace admin_portal
                     {
                         using (SqlCommand cmd = con.CreateCommand())
                         {
-                            string loginQuery = "SELECT U.UserType FROM USER_INFO U WHERE U.Username = @Username AND U.Password = @Password";
-                            cmd.CommandText = loginQuery;
+                            string checkUserQuery = "SELECT COUNT(1) AS cnt, U.UserType AS type, U.Username AS name FROM USER_INFO U WHERE U.Username = @Username AND U.Password = @Password GROUP BY U.Username, U.UserType";
+                            cmd.CommandText = checkUserQuery;
                             cmd.Parameters.AddWithValue("@Username", txtloginUser.Text);
                             cmd.Parameters.AddWithValue("@Password", txtLoginPassword.Text);
                             con.Open();
 
-                            int type = Convert.ToInt32(cmd.ExecuteScalar());
-                            System.Diagnostics.Debug.WriteLine("usertype: " + type + "\n\n");
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (dr.HasRows)
+                            {
+                                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('HasRows');", true);
+                                while (dr.Read())
+                                {
+                                    count = Convert.ToInt32(dr["cnt"]);
+                                    usertype = Convert.ToInt32(dr["type"]);
+                                    username = Convert.ToString(dr["name"]);
+
+                                }
+                            }
                             con.Close();
-                            if (type == 0)
+                            if(count == 1)
                             {
-                                //Response.Redirect("SamplePage.aspx?Scr=" + Variable1);
-                                System.Diagnostics.Debug.WriteLine("User 0");
-                            }
-                            else if (type == 1)
-                            {
-                                System.Diagnostics.Debug.WriteLine("User 1");
-                            }
-                            else
-                            {
-                                System.Diagnostics.Debug.WriteLine("User 2");
+                                Session["Username"] = username;
+                                Session["UserType"] = usertype;
+                                System.Diagnostics.Debug.WriteLine(Session["username"]);
+                                System.Diagnostics.Debug.WriteLine(Session["UserType"]);
+
+                                if (usertype == 0)
+                                    Response.Redirect("Admin.aspx");
+                                else
+                                    Response.Redirect("Default.aspx");
+
                             }
                         }
                     }
